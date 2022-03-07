@@ -18,10 +18,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
+import KpiVsTime from './graphs/kpi/KpiVsTime';
 
 function Copyright(props: any) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="#2222A8" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://AiPaS.com/">
         AiPaS
@@ -115,7 +116,7 @@ function DashboardContent() {
             <Typography
               component="h1"
               variant="h6"
-              color="inherit"
+              color="#inherit"
               noWrap
               sx={{ flexGrow: 1 }}
             >
@@ -164,33 +165,14 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                </Paper>
+              <Grid item xs={6} md={4} lg={9}>
+               <KpiVsTime xData={['jan','feb','mar','apr']} yData={['1','7','3','5']} title = {"On time delivery rate"} />
               </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                </Paper>
+              <Grid item xs={6} md={4} lg={9}>
+               <KpiVsTime xData={['jan','feb','mar','apr']} yData={['5','4','2','4']} title = {"Cut-Ship Ratio"} />
               </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                </Paper>
+              <Grid item xs={6} md={4} lg={9}>
+               <KpiVsTime xData={['jan','feb','mar','apr']} yData={['3','4','6','3']} title = {"Order-Ship Ratio"} />
               </Grid>
             </Grid>
             <Copyright sx={{ pt: 4 }} />

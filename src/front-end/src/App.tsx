@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 
 import Dashboard from "./components/Dashboard";
-import KpiVsTime from './components/graphs/kpi/KpiVsTime';
 
 function App() {
 
