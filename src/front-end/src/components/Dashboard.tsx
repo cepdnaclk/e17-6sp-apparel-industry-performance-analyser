@@ -19,6 +19,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import KpiVsTime from './graphs/kpi/KpiVsTime';
+import { ReadData } from '../util/ReadData';
+
 
 function Copyright(props: any) {
   return (
@@ -87,9 +89,14 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
+  const [kpis,setKpis] = React.useState([[]]);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const getKpiData = (kpis:any[]) => {
+    setKpis(kpis);
+  }
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -162,17 +169,22 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
+
+          <Grid item xs={6} md={4} lg={9}>
+            <ReadData getKpiData={getKpiData}/>
+          </Grid>
+
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
               <Grid item xs={6} md={4} lg={9}>
-               <KpiVsTime xData={['jan','feb','mar','apr']} yData={['1','7','3','5']} title = {"On time delivery rate"} />
+               <KpiVsTime yData={kpis[0]} title = {"On time delivery rate"} />
               </Grid>
               <Grid item xs={6} md={4} lg={9}>
-               <KpiVsTime xData={['jan','feb','mar','apr']} yData={['5','4','2','4']} title = {"Cut-Ship Ratio"} />
+               <KpiVsTime yData={kpis[1]} title = {"Cut-Ship Ratio"} />
               </Grid>
               <Grid item xs={6} md={4} lg={9}>
-               <KpiVsTime xData={['jan','feb','mar','apr']} yData={['3','4','6','3']} title = {"Order-Ship Ratio"} />
+               <KpiVsTime yData={kpis[2]} title = {"Order-Ship Ratio"} />
               </Grid>
             </Grid>
             <Copyright sx={{ pt: 4 }} />
