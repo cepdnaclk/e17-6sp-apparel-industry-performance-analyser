@@ -1,8 +1,6 @@
 import { utils, read, WorkBook } from "xlsx";
 import getRowData from "./getRowData";
 
-type onGetKpiData = (kpis: String[][]) => void;
-
 export const ReadFile = async (file: File) => {
   const data = await file.arrayBuffer();
   /* data is an ArrayBuffer */
@@ -11,7 +9,7 @@ export const ReadFile = async (file: File) => {
   return workbook;
 };
 
-export const handleFile = (workbook: WorkBook, handle: onGetKpiData) => {
+export const getKpiData = (workbook: WorkBook) => {
   const kpiSheet = workbook.Sheets[workbook.SheetNames[1]];
   const kpiData: any[] = utils.sheet_to_json(kpiSheet, { header: 1 });
   const otdRowData = getRowData(kpiData[5]); //On Time Delivery
@@ -24,5 +22,5 @@ export const handleFile = (workbook: WorkBook, handle: onGetKpiData) => {
 
   const kpis = [otd, osr, csr];
 
-  handle(kpis);
+  return kpis;
 };

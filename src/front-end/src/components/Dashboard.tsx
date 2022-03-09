@@ -18,7 +18,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
 import KpiVsTime from "./graphs/kpi/KpiVsTime";
-import { handleFile, ReadFile } from "../util/ReadData";
+import { getKpiData, ReadFile } from "../util/ReadData";
 import AddFile from "./AddFile";
 
 function Copyright(props: any) {
@@ -100,7 +100,8 @@ function DashboardContent() {
       return;
     }
     const workbook = await ReadFile(file);
-    handleFile(workbook, setKpiDataState);
+    const kpiData = getKpiData(workbook);
+    setKpiDataState(kpiData);
   };
   return (
     <ThemeProvider theme={mdTheme}>
