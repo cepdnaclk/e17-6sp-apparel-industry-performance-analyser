@@ -1,7 +1,11 @@
 const getRowData = (row: any[]) => {
   //returns a data in a specific row as an array
   const row_data: String[] = [];
-  row.map((item: any) => row_data.push(item));
+  try {
+    row.map((item: any) => row_data.push(item));
+  } catch (Error) {
+    throw new TypeError("File format is incorrect");
+  }
   return row_data;
 };
 
