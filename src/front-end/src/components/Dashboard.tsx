@@ -31,6 +31,7 @@ function DashboardContent() {
     const kpiData = getKpiData(workbook);
     setKpiDataState(kpiData);
   };
+  
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
