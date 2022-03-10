@@ -1,6 +1,4 @@
-import { get } from 'https';
-import React from 'react';
-import {utils,read,readFile} from 'xlsx';
+import {utils,read} from 'xlsx';
 
 
 type ReadExcelProps = {
